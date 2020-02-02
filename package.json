@@ -1,0 +1,23 @@
+{
+  "name": "requests_test",
+  "version": "1.0.0",
+  "description": "CircleCI test",
+  "main": "index.js",
+  "dependencies": {
+    "serverless-python-requirements": "^5.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takakabe/circleci_test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/takakabe/circleci_test/issues"
+  },
+  "homepage": "https://github.com/takakabe/circleci_test#readme"
+}
