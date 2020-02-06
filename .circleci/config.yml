@@ -1,6 +1,17 @@
 version: 2
 jobs:
-  build:
+  test:
+    docker:
+      - image: circleci/python:3.7
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: unittest 
+          command: |
+            python ./handler.py
+
+  deploy:
     docker:
       - image: circleci/python:3.7.6-stretch-node-browsers
     working_directory: ~/repo
@@ -16,3 +27,13 @@ jobs:
           command: |
             npm install --save serverless-python-requirements
             sls deploy 
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+
