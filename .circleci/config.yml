@@ -1,43 +1,33 @@
-version: 2
+version: 2.1
+
 jobs:
-  test:
+  build:
     docker:
-      - image: circleci/python:3.7
+      - image: circleci/python:lts
     working_directory: ~/repo
     steps:
-      - checkout
-      - run:
-          name: unittest 
-          command: |
-            python ./handler.py
-
+    - run:
+        command: |
+          run: echo 'wawawa' >> /build/wawawa.txt
+    - persist_to_workspace:
+        root: ~/repo
+        paths:
+            - build/* 
   deploy:
     docker:
-      - image: circleci/python:3.7.6-stretch-node-browsers
-    working_directory: ~/repo
+      - image: circleci/python:lts
     steps:
-      - checkout
-      - run:
-          name: Install Serverless CLI and dependencies
-          command: |
-            sudo npm install -g serverless
-            npm install 
-      - deploy: 
-          name: Deploy
-          command: |
-            npm install --save serverless-python-requirements
-            sls deploy 
+    - attach_workspace:
+        at: ~/repo
+    - run:
+        command: |
+          ls -l 
+          ls -l build 
 
 workflows:
-  version: 2
-  test_and_deploy:
-    jobs:
-      - test
-      - deploy:
-          requires:
-            - test
-          filters:
-            branches:
-              only: 
-                - develop 
-
+   main:
+     jobs:
+     - build 
+     - deploy:
+         requires:
+           - build
