@@ -18,11 +18,13 @@ jobs:
   deploy:
     docker:
       - image: circleci/python:3.7
+    working_directory: ~/repo
     steps:
     - attach_workspace:
         at: ~/repo
     - run:
         command: |
+          pwd
           ls -l 
           ls -l build 
 
