@@ -8,7 +8,9 @@ jobs:
     steps:
     - run:
         command: |
-          run: echo 'wawawa' >> /build/wawawa.txt
+          mkdir build
+          echo 'wawawa' >> build/wawawa.txt
+
     - persist_to_workspace:
         root: ~/repo
         paths:
