@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:lts
+      - image: circleci/python:3.7
     working_directory: ~/repo
     steps:
     - run:
@@ -15,7 +15,7 @@ jobs:
             - build/* 
   deploy:
     docker:
-      - image: circleci/python:lts
+      - image: circleci/python:3.7
     steps:
     - attach_workspace:
         at: ~/repo
